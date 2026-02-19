@@ -1,0 +1,130 @@
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge"><i class="fa-solid fa-screwdriver-wrench"></i> Our Services</div>
+      <h2>What We <span>Repair & Service</span></h2>
+      <p>Professional appliance repair services for all major brands, right at your doorstep.</p>
+    </div>
+
+    <!-- Service Tabs -->
+    <div class="service-tabs">
+      @for (service of services; track service.id; let i = $index) {
+        <button
+          class="tab-btn"
+          [class.active]="activeTab() === i"
+          (click)="setTab(i)"
+        >
+          <div class="tab-icon"
+            [style.background]="activeTab() === i ? service.gradient : service.iconBg">
+            <i class="fa-solid {{ service.icon }}"
+               [style.color]="activeTab() === i ? 'white' : '#1565c0'"></i>
+          </div>
+          <span>{{ service.title }}</span>
+          @if (i === 0) { <span class="tab-badge">Popular</span> }
+        </button>
+      }
+    </div>
+
+    <!-- Active Service Panel -->
+    @for (service of services; track service.id; let i = $index) {
+      @if (activeTab() === i) {
+        <div class="service-panel" @fadeUp>
+
+          <!-- IMAGE PANEL — CSS gradient, no broken img dependency -->
+          <div class="panel-image" [style.background]="service.gradient">
+
+            <!-- Decorative rings -->
+            <div class="img-deco" aria-hidden="true">
+              <div class="ring r1"></div>
+              <div class="ring r2"></div>
+              <div class="ring r3"></div>
+              <div class="ring-spin"></div>
+              <i class="fa-solid {{ service.icon }} bg-icon"></i>
+            </div>
+
+            <!-- Floating info pills -->
+            <div class="img-pills">
+              <div class="img-pill">
+                <i class="fa-solid fa-star"></i><span>4.9★ Rated</span>
+              </div>
+              <div class="img-pill">
+                <i class="fa-solid fa-bolt"></i><span>Same Day</span>
+              </div>
+              <div class="img-pill">
+                <i class="fa-solid fa-shield-halved"></i><span>90-Day Warranty</span>
+              </div>
+            </div>
+
+            <!-- Top-left badge -->
+            <div class="image-badge" [style.background]="service.badgeColor">
+              <i class="fa-solid fa-certificate"></i>
+              {{ service.badge }}
+            </div>
+
+            <!-- Bottom price chip -->
+            <div class="price-chip">
+              <span class="price-label">Starting From</span>
+              <span class="price-value">{{ service.startingPrice }}</span>
+              <span class="price-visit">per visit</span>
+            </div>
+
+            <!-- Bottom brand strip -->
+            <div class="img-brands">
+              <span>Voltas</span><span>LG</span><span>Samsung</span><span>Daikin</span><span>+20 more</span>
+            </div>
+          </div>
+
+          <!-- CONTENT PANEL -->
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="service-icon" [style.background]="service.gradient">
+                <i class="fa-solid {{ service.icon }}"></i>
+              </div>
+              <div>
+                <p class="tagline">{{ service.tagline }}</p>
+                <h3>{{ service.title }} <span>Services</span></h3>
+              </div>
+            </div>
+
+            <p class="panel-desc">{{ service.description }}</p>
+
+            <div class="service-items">
+              @for (item of service.items; track item.label) {
+                <div class="service-item">
+                  <div class="item-icon" [style.background]="service.iconBg">
+                    <i class="fa-solid {{ item.icon }}" style="color:#1565c0"></i>
+                  </div>
+                  <span>{{ item.label }}</span>
+                  <i class="fa-solid fa-check item-check"></i>
+                </div>
+              }
+            </div>
+
+            <div class="panel-actions">
+              <button class="btn btn-primary" (click)="scrollToBook()">
+                <i class="fa-solid fa-calendar-check"></i>
+                Book Service Now
+              </button>
+              <a href="tel:+919999999999" class="btn btn-outline-primary">
+                <i class="fa-solid fa-phone"></i>
+                Call Expert
+              </a>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+
+  <!-- Brand Logos -->
+  <div class="brands-strip">
+    <div class="container">
+      <p class="brands-label">We Service All Major Brands</p>
+      <div class="brands-list">
+        @for (brand of ['Voltas', 'LG', 'Samsung', 'Daikin', 'Whirlpool', 'Godrej', 'Haier', 'Carrier', 'Blue Star', 'Hitachi']; track brand) {
+          <div class="brand-tag">{{ brand }}</div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

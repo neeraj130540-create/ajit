@@ -1,0 +1,115 @@
+<section class="how-section" id="how-it-works">
+  <div class="container">
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <div class="section-header">
+      <div class="badge"><i class="fa-solid fa-list-check"></i> Process</div>
+      <h2>How It <span>Works</span></h2>
+      <p>Getting your appliance repaired is simple and hassle-free with Ajit Enterprises.</p>
+    </div>
+
+    <!--
+      FIXED TIMELINE — Uses CSS Grid: [1fr] [80px dot-column] [1fr]
+      Odd steps: card on RIGHT (col 3), empty on LEFT (col 1)
+      Even steps: card on LEFT (col 1), empty on RIGHT (col 3)
+      Mobile: collapses to [60px] [1fr] — all cards on right
+    -->
+    <div class="timeline-wrap">
+      <!-- Vertical center line -->
+      <div class="tl-line" aria-hidden="true"></div>
+
+      @for (step of steps; track step.step; let i = $index) {
+        <div class="tl-row" [class.left-card]="i % 2 !== 0" [class.right-card]="i % 2 === 0">
+
+          <!-- LEFT COLUMN -->
+          <div class="tl-col tl-col-left">
+            @if (i % 2 !== 0) {
+              <div class="tl-card" [style.--step-c]="step.color" [style.--step-bg]="step.bg">
+                <span class="card-num">{{ step.step }}</span>
+                <div class="card-icon" [style.background]="step.bg" [style.color]="step.color">
+                  <i class="fa-solid {{ step.icon }}"></i>
+                </div>
+                <h4>{{ step.title }}</h4>
+                <p>{{ step.description }}</p>
+                <div class="card-footer" [style.background]="step.bg" [style.color]="step.color">
+                  <i class="fa-solid fa-circle-check"></i> Step {{ step.step }}
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- CENTER DOT COLUMN -->
+          <div class="tl-col tl-col-center">
+            <div class="tl-dot" [style.background]="step.color"
+                 [style.box-shadow]="'0 0 0 6px ' + step.color + '28, 0 4px 20px ' + step.color + '50'">
+              <i class="fa-solid {{ step.icon }}"></i>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN -->
+          <div class="tl-col tl-col-right">
+            @if (i % 2 === 0) {
+              <div class="tl-card" [style.--step-c]="step.color" [style.--step-bg]="step.bg">
+                <span class="card-num">{{ step.step }}</span>
+                <div class="card-icon" [style.background]="step.bg" [style.color]="step.color">
+                  <i class="fa-solid {{ step.icon }}"></i>
+                </div>
+                <h4>{{ step.title }}</h4>
+                <p>{{ step.description }}</p>
+                <div class="card-footer" [style.background]="step.bg" [style.color]="step.color">
+                  <i class="fa-solid fa-circle-check"></i> Step {{ step.step }}
+                </div>
+              </div>
+            }
+          </div>
+
+        </div>
+      }
+    </div>
+
+    <!-- ===== CTA BANNER ===== -->
+    <div class="cta-banner">
+      <div class="cta-deco" aria-hidden="true">
+        <div class="cta-circle c1"></div>
+        <div class="cta-circle c2"></div>
+      </div>
+      <div class="cta-text">
+        <h3>Ready to Book Your Service?</h3>
+        <p>Over 5000 satisfied customers trust Ajit Enterprises for all their appliance needs.</p>
+      </div>
+      <div class="cta-actions">
+        <button class="btn btn-accent"
+          onclick="document.getElementById('book-service').scrollIntoView({behavior:'smooth'})">
+          <i class="fa-solid fa-calendar-check"></i>
+          Book Now
+        </button>
+        <a href="tel:+919999999999" class="btn btn-outline-white">
+          <i class="fa-solid fa-phone"></i>
+          +91 99999 99999
+        </a>
+      </div>
+    </div>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <div class="why-section" id="about">
+      <div class="section-header">
+        <div class="badge"><i class="fa-solid fa-circle-info"></i> About Us</div>
+        <h2>Why Choose <span>Ajit Enterprises?</span></h2>
+        <p>We go the extra mile to ensure your complete satisfaction with every service call.</p>
+      </div>
+
+      <div class="why-grid">
+        @for (item of whyChooseUs; track item.title) {
+          <div class="why-card">
+            <div class="why-icon">
+              <i class="fa-solid {{ item.icon }}"></i>
+            </div>
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.desc }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+  </div>
+</section>

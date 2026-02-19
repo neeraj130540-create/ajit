@@ -1,0 +1,403 @@
+<section class="book-section" id="book-service">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge"><i class="fa-solid fa-calendar-check"></i> Book a Service</div>
+      <h2>Schedule Your <span>Service Request</span></h2>
+      <p>Fill in the form below and our technician will visit at your preferred time. All fields are required.</p>
+    </div>
+
+    <div class="book-layout">
+      <!-- Info Panel -->
+      <div class="info-panel">
+        <div class="info-header">
+          <div class="info-logo">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <div>
+            <h3>Ajit Enterprises</h3>
+            <p>Your Trusted Appliance Partner</p>
+          </div>
+        </div>
+
+        <div class="contact-list">
+          <div class="contact-item">
+            <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <span class="c-label">Call / WhatsApp</span>
+              <a href="tel:+919999999999" class="c-value">+91 99999 99999</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <span class="c-label">Email</span>
+              <a href="mailto:info@ajitenterprises.com" class="c-value">info&#64;ajitenterprises.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <span class="c-label">Location</span>
+              <span class="c-value">Your City, State</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <span class="c-label">Working Hours</span>
+              <span class="c-value">Mon–Sat: 8 AM – 8 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-badges">
+          <div class="i-badge"><i class="fa-solid fa-shield-halved"></i> 90-Day Warranty</div>
+          <div class="i-badge"><i class="fa-solid fa-bolt"></i> Same Day Service</div>
+          <div class="i-badge"><i class="fa-solid fa-tag"></i> Free Diagnosis</div>
+          <div class="i-badge"><i class="fa-solid fa-star"></i> 5000+ Customers</div>
+        </div>
+
+        <div class="services-quick">
+          <p class="sq-label">We Service</p>
+          <div class="sq-cards">
+            <div class="sq-card">
+              <i class="fa-solid fa-snowflake"></i>
+              <span>AC</span>
+            </div>
+            <div class="sq-card">
+              <i class="fa-solid fa-temperature-low"></i>
+              <span>Fridge</span>
+            </div>
+            <div class="sq-card">
+              <i class="fa-solid fa-rotate"></i>
+              <span>Washer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking Form -->
+      <div class="form-panel" [@shake]="shakeState()">
+
+        <!-- Success State -->
+        @if (submitted()) {
+          <div class="success-screen" @successAnim>
+            <div class="success-icon">
+              <div class="pulse-ring"></div>
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3>Booking Confirmed!</h3>
+            <p>
+              Thank you for booking with <strong>Ajit Enterprises</strong>. We've received your service
+              request and our team will contact you shortly to confirm the appointment.
+            </p>
+            <div class="success-info">
+              <i class="fa-solid fa-phone"></i>
+              We'll call you on the number provided within 30 minutes.
+            </div>
+            <button class="btn btn-primary" (click)="resetForm()">
+              <i class="fa-solid fa-plus"></i>
+              Book Another Service
+            </button>
+          </div>
+        }
+
+        <!-- Form State -->
+        @if (!submitted()) {
+          <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-title">
+              <i class="fa-solid fa-file-pen"></i>
+              <h3>Service Request Form</h3>
+              <span class="req-note"><span class="req">*</span> All fields are required</span>
+            </div>
+
+            <!-- Row 1: Name & Phone -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-user input-icon"></i>
+                  <input
+                    id="name"
+                    type="text"
+                    class="form-control"
+                    [class.invalid]="isInvalid('name')"
+                    formControlName="name"
+                    placeholder="e.g. Rajesh Kumar"
+                    autocomplete="name"
+                  />
+                  @if (bookingForm.get('name')?.valid && bookingForm.get('name')?.dirty) {
+                    <i class="fa-solid fa-circle-check valid-icon" @slideIn></i>
+                  }
+                </div>
+                @if (isInvalid('name')) {
+                  <div class="error-msg" @slideIn>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    {{ getError('name') }}
+                  </div>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Mobile Number <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-phone input-icon"></i>
+                  <span class="input-prefix">+91</span>
+                  <input
+                    id="phone"
+                    type="tel"
+                    class="form-control has-prefix"
+                    [class.invalid]="isInvalid('phone')"
+                    formControlName="phone"
+                    placeholder="10-digit mobile number"
+                    maxlength="10"
+                    autocomplete="tel"
+                  />
+                  @if (bookingForm.get('phone')?.valid && bookingForm.get('phone')?.dirty) {
+                    <i class="fa-solid fa-circle-check valid-icon" @slideIn></i>
+                  }
+                </div>
+                @if (isInvalid('phone')) {
+                  <div class="error-msg" @slideIn>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    {{ getError('phone') }}
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Row 2: Email -->
+            <div class="form-group">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-envelope input-icon"></i>
+                <input
+                  id="email"
+                  type="email"
+                  class="form-control"
+                  [class.invalid]="isInvalid('email')"
+                  formControlName="email"
+                  placeholder="e.g. rajesh@gmail.com"
+                  autocomplete="email"
+                />
+                @if (bookingForm.get('email')?.valid && bookingForm.get('email')?.dirty) {
+                  <i class="fa-solid fa-circle-check valid-icon" @slideIn></i>
+                }
+              </div>
+              @if (isInvalid('email')) {
+                <div class="error-msg" @slideIn>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ getError('email') }}
+                </div>
+              }
+            </div>
+
+            <!-- Row 3: Address -->
+            <div class="form-group">
+              <label for="address">Full Address <span class="required">*</span></label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-location-dot input-icon"></i>
+                <input
+                  id="address"
+                  type="text"
+                  class="form-control"
+                  [class.invalid]="isInvalid('address')"
+                  formControlName="address"
+                  placeholder="House No., Street, Area, City"
+                  autocomplete="street-address"
+                />
+                @if (bookingForm.get('address')?.valid && bookingForm.get('address')?.dirty) {
+                  <i class="fa-solid fa-circle-check valid-icon" @slideIn></i>
+                }
+              </div>
+              @if (isInvalid('address')) {
+                <div class="error-msg" @slideIn>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ getError('address') }}
+                </div>
+              }
+            </div>
+
+            <!-- Row 4: Service Type & Category -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="serviceType">Appliance Type <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-screwdriver-wrench input-icon"></i>
+                  <select
+                    id="serviceType"
+                    class="form-control"
+                    [class.invalid]="isInvalid('serviceType')"
+                    formControlName="serviceType"
+                  >
+                    <option value="" disabled>Select appliance</option>
+                    @for (type of serviceTypes; track type) {
+                      <option [value]="type">{{ type }}</option>
+                    }
+                  </select>
+                </div>
+                @if (isInvalid('serviceType')) {
+                  <div class="error-msg" @slideIn>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    {{ getError('serviceType') }}
+                  </div>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="serviceCategory">Service Type <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-list input-icon"></i>
+                  <select
+                    id="serviceCategory"
+                    class="form-control"
+                    [class.invalid]="isInvalid('serviceCategory')"
+                    formControlName="serviceCategory"
+                  >
+                    <option value="" disabled>Select service</option>
+                    @for (cat of serviceCategories; track cat) {
+                      <option [value]="cat">{{ cat }}</option>
+                    }
+                  </select>
+                </div>
+                @if (isInvalid('serviceCategory')) {
+                  <div class="error-msg" @slideIn>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    {{ getError('serviceCategory') }}
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Row 5: Brand -->
+            <div class="form-group">
+              <label for="brand">Appliance Brand <span class="required">*</span></label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-tag input-icon"></i>
+                <input
+                  id="brand"
+                  type="text"
+                  class="form-control"
+                  [class.invalid]="isInvalid('brand')"
+                  formControlName="brand"
+                  placeholder="e.g. Voltas, LG, Samsung, Whirlpool"
+                />
+                @if (bookingForm.get('brand')?.valid && bookingForm.get('brand')?.dirty) {
+                  <i class="fa-solid fa-circle-check valid-icon" @slideIn></i>
+                }
+              </div>
+              @if (isInvalid('brand')) {
+                <div class="error-msg" @slideIn>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ getError('brand') }}
+                </div>
+              }
+            </div>
+
+            <!-- Row 6: Problem Description -->
+            <div class="form-group">
+              <label for="problem">Problem Description <span class="required">*</span></label>
+              <div class="input-wrap textarea-wrap">
+                <i class="fa-solid fa-message input-icon"></i>
+                <textarea
+                  id="problem"
+                  class="form-control"
+                  [class.invalid]="isInvalid('problem')"
+                  formControlName="problem"
+                  placeholder="Describe the issue in detail (e.g. AC is not cooling, making noise, leaking water...)"
+                  rows="4"
+                ></textarea>
+              </div>
+              <div class="char-count" [class.warn]="charCount < 20 && charCount > 0">
+                {{ charCount }}/20+ characters
+                @if (charCount >= 20) { <i class="fa-solid fa-check"></i> }
+              </div>
+              @if (isInvalid('problem')) {
+                <div class="error-msg" @slideIn>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ getError('problem') }}
+                </div>
+              }
+            </div>
+
+            <!-- Row 7: Date & Time Slot -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="preferredDate">Preferred Date <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-calendar input-icon"></i>
+                  <input
+                    id="preferredDate"
+                    type="date"
+                    class="form-control"
+                    [class.invalid]="isInvalid('preferredDate')"
+                    formControlName="preferredDate"
+                    [min]="minDate"
+                  />
+                </div>
+                @if (isInvalid('preferredDate')) {
+                  <div class="error-msg" @slideIn>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    {{ getError('preferredDate') }}
+                  </div>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="timeSlot">Preferred Time <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-clock input-icon"></i>
+                  <select
+                    id="timeSlot"
+                    class="form-control"
+                    [class.invalid]="isInvalid('timeSlot')"
+                    formControlName="timeSlot"
+                  >
+                    <option value="" disabled>Select time slot</option>
+                    @for (slot of timeSlots; track slot) {
+                      <option [value]="slot">{{ slot }}</option>
+                    }
+                  </select>
+                </div>
+                @if (isInvalid('timeSlot')) {
+                  <div class="error-msg" @slideIn>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    {{ getError('timeSlot') }}
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Error Banner -->
+            @if (submitError()) {
+              <div class="error-banner" @slideIn>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                {{ submitError() }}
+              </div>
+            }
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="btn btn-primary submit-btn"
+              [disabled]="submitting()"
+            >
+              @if (submitting()) {
+                <span class="spinner"></span>
+                Submitting...
+              } @else {
+                <i class="fa-solid fa-paper-plane"></i>
+                Confirm Booking
+              }
+            </button>
+
+            <p class="form-note">
+              <i class="fa-solid fa-lock"></i>
+              Your information is safe with us. We will never share your data.
+            </p>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

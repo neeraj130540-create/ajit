@@ -1,0 +1,130 @@
+<footer class="footer">
+  <div class="footer-main">
+    <div class="container footer-grid">
+      <!-- Brand Column -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div>
+            <span class="logo-name">Ajit Enterprises</span>
+            <span class="logo-sub">Home Appliance Services</span>
+          </div>
+        </div>
+        <p class="brand-desc">
+          Your trusted partner for AC, Refrigerator and Washing Machine repair &
+          service. Fast, reliable, and affordable home appliance solutions.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" class="social-btn" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          @for (link of quickLinks; track link.label) {
+            <li>
+              <a (click)="scrollTo(link.href)" role="button">
+                <i class="fa-solid fa-chevron-right"></i>
+                {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Our Services -->
+      <div class="footer-col">
+        <h4>Our Services</h4>
+        <ul>
+          @for (svc of services; track svc.label) {
+            <li>
+              <a (click)="scrollTo(svc.href)" role="button">
+                <i class="fa-solid fa-chevron-right"></i>
+                {{ svc.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-info">
+          <div class="contact-row">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <span>Call / WhatsApp</span>
+              <a href="tel:+919999999999">+91 99999 99999</a>
+            </div>
+          </div>
+          <div class="contact-row">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <span>Email</span>
+              <a href="mailto:info@ajitenterprises.com">info&#64;ajitenterprises.com</a>
+            </div>
+          </div>
+          <div class="contact-row">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <span>Location</span>
+              <p>Your City, State, India</p>
+            </div>
+          </div>
+          <div class="contact-row">
+            <i class="fa-solid fa-clock"></i>
+            <div>
+              <span>Working Hours</span>
+              <p>Mon – Sat: 8 AM – 8 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="tel:+919999999999" class="btn btn-accent footer-cta">
+          <i class="fa-solid fa-phone"></i>
+          Call Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>
+        &copy; {{ currentYear }} <strong>Ajit Enterprises</strong>. All rights reserved.
+      </p>
+      <div class="bottom-badges">
+        <span><i class="fa-solid fa-shield-halved"></i> 90-Day Warranty</span>
+        <span><i class="fa-solid fa-star"></i> 5000+ Customers</span>
+        <span><i class="fa-solid fa-wrench"></i> All Brands</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a
+    href="https://wa.me/919999999999?text=Hi%20Ajit%20Enterprises%2C%20I%20need%20appliance%20service."
+    class="whatsapp-fab"
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat on WhatsApp"
+  >
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="fab-tooltip">Chat with us!</span>
+  </a>
+</footer>

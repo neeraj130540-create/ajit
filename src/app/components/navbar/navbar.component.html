@@ -1,0 +1,66 @@
+<nav class="navbar" [class.scrolled]="isScrolled()">
+  <div class="container navbar-inner">
+    <!-- Logo -->
+    <a class="logo" (click)="scrollTo('#home')" role="button">
+      <div class="logo-icon">
+        <i class="fa-solid fa-bolt"></i>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Ajit Enterprises</span>
+        <span class="logo-tagline">AC • Fridge • Washing Machine</span>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <ul class="nav-links">
+      @for (link of navLinks; track link.href) {
+        <li>
+          <a
+            [class.active]="activeSection() === link.href.replace('#', '')"
+            (click)="scrollTo(link.href)"
+            role="button"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <!-- CTA + Hamburger -->
+    <div class="nav-actions">
+      <a href="tel:+919999999999" class="btn btn-accent call-btn">
+        <i class="fa-solid fa-phone"></i>
+        <span>Call Now</span>
+      </a>
+      <button
+        class="hamburger"
+        [class.open]="mobileMenuOpen()"
+        (click)="toggleMenu()"
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  @if (mobileMenuOpen()) {
+    <div class="mobile-menu" @slideDown>
+      <ul>
+        @for (link of navLinks; track link.href) {
+          <li>
+            <a (click)="scrollTo(link.href)" role="button">
+              <i class="fa-solid {{ link.icon }}"></i>
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+      <a href="tel:+919999999999" class="btn btn-accent mobile-call">
+        <i class="fa-solid fa-phone"></i> Call: +91 99999 99999
+      </a>
+    </div>
+  }
+</nav>

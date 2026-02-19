@@ -1,0 +1,111 @@
+<section class="hero" id="home">
+  <!-- Background Slides -->
+  <div class="hero-slides">
+    @for (slide of slides; track slide.badge; let i = $index) {
+      <div class="slide" [class.active]="currentSlide() === i">
+        <img [src]="slide.image" [alt]="slide.badge" loading="eager" />
+      </div>
+    }
+    <div class="overlay"></div>
+  </div>
+
+  <!-- Animated Particles -->
+  <div class="particles" aria-hidden="true">
+    @for (p of [1,2,3,4,5,6,7,8]; track p) {
+      <span class="particle" [style.animation-delay]="(p * 0.9) + 's'" [style.left]="(p * 12) + '%'"></span>
+    }
+  </div>
+
+  <!-- Hero Content -->
+  <div class="container hero-content" @heroAnim>
+    <div class="content-wrap">
+      <div class="hero-badge">
+        <i class="fa-solid {{ slides[currentSlide()].icon }}"></i>
+        {{ slides[currentSlide()].badge }}
+      </div>
+
+      <h1 class="hero-title">
+        {{ slides[currentSlide()].title }}
+        <span class="accent">{{ slides[currentSlide()].titleAccent }}</span>
+      </h1>
+
+      <p class="hero-subtitle">{{ slides[currentSlide()].subtitle }}</p>
+
+      <div class="hero-actions">
+        <button class="btn btn-accent" (click)="scrollToBook()">
+          <i class="fa-solid fa-calendar-check"></i>
+          Book Service Now
+        </button>
+        <button class="btn btn-outline-white" (click)="scrollToServices()">
+          <i class="fa-solid fa-arrow-right"></i>
+          Our Services
+        </button>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="hero-badges-row">
+        @for (badge of trustBadges; track badge.text) {
+          <div class="trust-badge">
+            <i class="fa-solid {{ badge.icon }}"></i>
+            <span>{{ badge.text }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Floating Service Cards -->
+    <div class="floating-cards" aria-hidden="true">
+      <div class="float-card card-ac" @cardFloat>
+        <div class="float-icon">
+          <i class="fa-solid fa-snowflake"></i>
+        </div>
+        <div class="float-info">
+          <strong>AC Service</strong>
+          <span>Gas Refill, Repair</span>
+        </div>
+      </div>
+
+      <div class="float-card card-fridge" @cardFloat>
+        <div class="float-icon">
+          <i class="fa-solid fa-temperature-low"></i>
+        </div>
+        <div class="float-info">
+          <strong>Fridge Repair</strong>
+          <span>All Brands</span>
+        </div>
+      </div>
+
+      <div class="float-card card-wm" @cardFloat>
+        <div class="float-icon">
+          <i class="fa-solid fa-rotate"></i>
+        </div>
+        <div class="float-info">
+          <strong>Washing Machine</strong>
+          <span>Fast Fix</span>
+        </div>
+      </div>
+
+      <div class="float-card card-warranty">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>90-Day Warranty</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide Indicators -->
+  <div class="slide-indicators">
+    @for (slide of slides; track slide.badge; let i = $index) {
+      <button
+        class="indicator"
+        [class.active]="currentSlide() === i"
+        (click)="goToSlide(i)"
+        [attr.aria-label]="'Slide ' + (i + 1)"
+      ></button>
+    }
+  </div>
+
+  <!-- Scroll Hint -->
+  <div class="scroll-hint" (click)="scrollToServices()">
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+</section>

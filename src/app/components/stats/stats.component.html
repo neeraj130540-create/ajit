@@ -1,0 +1,20 @@
+<section class="stats-section" id="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      @for (stat of stats; track stat.label; let i = $index) {
+        <div class="stat-card">
+          <div class="stat-icon" [style.background]="stat.color + '18'" [style.color]="stat.color">
+            <i class="fa-solid {{ stat.icon }}"></i>
+          </div>
+          <div class="stat-value" [style.color]="stat.color">
+            {{ animatedValues()[i] }}{{ stat.suffix }}
+          </div>
+          <div class="stat-label">{{ stat.label }}</div>
+          <div class="stat-bar">
+            <div class="stat-fill" [style.background]="stat.color" [style.width.%]="(animatedValues()[i] / stat.value) * 100"></div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
