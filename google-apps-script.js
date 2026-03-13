@@ -1,12 +1,12 @@
 /**
  * ============================================================
- * AJIT ENTERPRISES - Google Apps Script for Google Sheets
+ * Snow Cool Solutions - Google Apps Script for Google Sheets
  * ============================================================
  *
  * SETUP INSTRUCTIONS:
  * -------------------
  * 1. Open Google Sheets (sheets.google.com) → Create a new sheet
- *    Name it: "Ajit Enterprises - Service Bookings"
+ *    Name it: "Snow Cool Solutions - Service Bookings"
  *
  * 2. Go to Extensions → Apps Script
  *
@@ -129,7 +129,7 @@ function doGet(e) {
   return ContentService.createTextOutput(
     JSON.stringify({
       status: 'ok',
-      message: 'Ajit Enterprises Booking API is running.',
+      message: 'Snow Cool Solutions Booking API is running.',
     })
   ).setMimeType(ContentService.MimeType.JSON);
 }

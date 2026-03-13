@@ -1,4 +1,4 @@
-# Ajit Enterprises - Angular 18 Service Booking App
+# Snow Cool Solutions - Angular 18 Service Booking App
 
 > Professional AC, Refrigerator & Washing Machine repair service web application.
 
