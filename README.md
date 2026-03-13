@@ -46,7 +46,7 @@ To enable the booking form to save data to Google Sheets:
 |------|-------|
 | Shop name/logo | `navbar.component.html`, `footer.component.html` |
 | Phone number | Replace `+919999999999` across all components |
-| Email | Replace `info@ajitenterprises.com` |
+| Email | Replace `ajitkumarakrss@gmail.com` |
 | Address | `footer.component.html` |
 | Colors | `src/styles.scss` (CSS variables at top) |
 | Services list | `services.component.ts` |
